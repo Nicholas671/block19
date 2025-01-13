@@ -18,3 +18,7 @@ const names = [
     { name: "4-LOM", species: "Droid", price: "75000" },
     { name: "Zuckuss", species: "Gand", price: "75000" },
 ]
+
+const freeLancelist = document.querySelector("fl-list")
+
+
