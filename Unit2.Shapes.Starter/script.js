@@ -35,7 +35,7 @@ document.querySelector("addCharacterButton").addEventListener("click", () => {
 function render() {
     const freeLancelist = document.querySelector("fl-list")
     const tableElements = names.map((name) => {
-        const tableName
+        const tableRow = document.createElement()
     }
     )
 }
