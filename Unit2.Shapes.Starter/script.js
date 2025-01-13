@@ -2,7 +2,7 @@
 const addNames = [
     { name: "Aurra Sing", species: "Paaliduvan", price: "20000" },
     { name: "Cad Bane", species: "Duros", price: "70000" },
-    { name: "Jango", species: "Human", price: "100000" },
+    { name: "Jango Ftt", species: "Human", price: "100000" },
     { name: "Boushh", species: "Ubese", price: "25000" },
     { name: "Fennec Shand", species: "Human, Cyborg", price: "65000" },
     { name: "Greedo", species: "Rodian", price: "30000" },
@@ -54,7 +54,7 @@ function render() {
     characterList.innerHTML = '';
     characters.forEach(character => {
         const li = document.createElement('li');
-        li.textContent = `${character.name} (${character.species}) - ${"GC" + character.price}`;
+        li.textContent = `${character.name} (${character.species}) - ${"GC" + "-" + character.price}`;
         characterList.appendChild(li);
     });
 }
