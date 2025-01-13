@@ -9,8 +9,7 @@ const addNames = [
     { name: "Black Krrsantan", species: "Wookie", price: "100000" },
     { name: "Din Djarin", species: "Human", price: "250000" },
 ];
-
-// === State ===
+// List of characters
 const characters = [
     { name: "Boba Fett", species: "Human", price: "500000" },
     { name: "Bossk", species: "Trandoshan", price: "100000" },
@@ -34,7 +33,7 @@ updateAveragePrice();
 
 
 
-
+//Let's get some input from the user
 document.querySelector('#addCharacterButton').addEventListener('click', () => {
     const nameInput = document.querySelector('#nameInput').value;
     const speciesInput = document.querySelector('#speciesInput').value;
@@ -48,7 +47,7 @@ document.querySelector('#addCharacterButton').addEventListener('click', () => {
         // Re-render the list after adding a new character
     }
 });
-
+//Let's render the list of characters
 function render() {
     const characterList = document.querySelector('#characterList');
     characterList.innerHTML = '';
@@ -63,11 +62,7 @@ function render() {
 render();
 
 
-function averagePrice(characters) {
-    const total = characters.reduce((sum, character) => sum + parseInt(character.price), 0);
-    console.log(total);
-    return Math.round(total / characters.length);
-}
+
 
 // Add additional freelancers to the list
 function addCharacter() {
@@ -80,6 +75,7 @@ function addCharacter() {
 
 const addCharacterInterval = setInterval(() => {
     addCharacter();
+    updateAveragePrice();
     render();
     if (characters.length >= 14) {
         clearInterval(addCharacterInterval);
