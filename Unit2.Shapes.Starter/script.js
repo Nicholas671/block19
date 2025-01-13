@@ -19,16 +19,34 @@ const characters = [
     { name: "4-LOM", species: "Droid", price: "75000" },
     { name: "Zuckuss", species: "Gand", price: "75000" },
 ];
-
-function calculateAveragePrice() {
+// Calculate and update the average price
+function updateAveragePrice() {
     const total = characters.reduce((sum, character) => sum + parseInt(character.price), 0);
-    return total / characters.length;
+    const average = total / characters.length;
+    document.querySelector('#averagePrice').textContent = `Average Price: GC${average.toFixed(2)}`;
 }
 
-function updateAveragePriceDisplay() {
-    const averagePrice = calculateAveragePrice();
-    document.querySelector('#averagePrice').textContent = `Average Price: GC${averagePrice.toFixed(2)}`;
+// Create and append the average price element
+const averagePriceElement = document.createElement('div');
+averagePriceElement.id = 'averagePrice';
+document.body.appendChild(averagePriceElement);
+
+
+// Update the average price whenever the characters list changes
+function render() {
+    const characterList = document.querySelector('#characterList');
+    characterList.innerHTML = '';
+    characters.forEach(character => {
+        const li = document.createElement('li');
+        li.textContent = `${character.name} (${character.species}) - ${"GC" + character.price}`;
+        characterList.appendChild(li);
+    });
+    updateAveragePrice();
 }
+
+// Initial update of the average price
+updateAveragePrice();
+
 
 document.querySelector('#addCharacterButton').addEventListener('click', () => {
     const nameInput = document.querySelector('#nameInput').value;
