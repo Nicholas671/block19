@@ -32,10 +32,6 @@ document.querySelector("addCharacterButton").addEventListener("click", () => {
     }
 })
 
-function render() {
-    const freeLancelist = document.querySelector("fl-list")
-    const tableElements = names.map((name) => {
-        const tableRow = document.createElement()
-    }
-    )
-}
+
+
+render();
