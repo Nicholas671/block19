@@ -30,22 +30,9 @@ function updateAveragePrice() {
 const averagePriceElement = document.createElement('div');
 averagePriceElement.id = 'averagePrice';
 document.body.appendChild(averagePriceElement);
-
-
-// Update the average price whenever the characters list changes
-function render() {
-    const characterList = document.querySelector('#characterList');
-    characterList.innerHTML = '';
-    characters.forEach(character => {
-        const li = document.createElement('li');
-        li.textContent = `${character.name} (${character.species}) - ${"GC" + character.price}`;
-        characterList.appendChild(li);
-    });
-    updateAveragePrice();
-}
-
-// Initial update of the average price
 updateAveragePrice();
+
+
 
 
 document.querySelector('#addCharacterButton').addEventListener('click', () => {
@@ -72,6 +59,16 @@ function render() {
     });
 }
 
+
+render();
+
+
+function averagePrice(characters) {
+    const total = characters.reduce((sum, character) => sum + parseInt(character.price), 0);
+    console.log(total);
+    return Math.round(total / characters.length);
+}
+
 // Add additional freelancers to the list
 function addCharacter() {
     if (addNames.length === 0) return;
@@ -79,6 +76,8 @@ function addCharacter() {
     const character = addNames.splice(randomIndex, 1)[0];
     characters.push(character);
 }
+
+
 const addCharacterInterval = setInterval(() => {
     addCharacter();
     render();
