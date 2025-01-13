@@ -20,10 +20,22 @@ const names = [
 ]
 
 document.querySelector("addCharacterButton").addEventListener("click", () => {
-    constant
+    const nameInput = document.querySelector("nameInput").value;
+    const speciesInput = document.querySelector("speciesInput").value;
+    const costInput = document.querySelector("costInput")
+    if (nameInput && speciesInput && costInput) {
+        names.push({ name: nameInput, species: speciesInput, cost: costInput });
+        document.querySelector("nameInput").value = "";
+        document.querySelector("speciesInput").value = "";
+        document.querySelector("costInput").value = "";
+        render();
+    }
 })
 
-function render()
-const freeLancelist = document.querySelector("fl-list")
-
-
+function render() {
+    const freeLancelist = document.querySelector("fl-list")
+    const tableElements = names.map((name) => {
+        const tableName
+    }
+    )
+}
