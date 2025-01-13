@@ -1,4 +1,4 @@
-// List of additional freelancers
+// List of additional characters
 const addNames = [
     { name: "Aurra Sing", species: "Paaliduvan", price: "20000" },
     { name: "Cad Bane", species: "Duros", price: "70000" },
@@ -19,6 +19,7 @@ const characters = [
     { name: "Zuckuss", species: "Gand", price: "75000" },
 ];
 // Calculate and update the average price
+
 function updateAveragePrice() {
     const total = characters.reduce((sum, character) => sum + parseInt(character.price), 0);
     const average = total / characters.length;
@@ -44,7 +45,7 @@ document.querySelector('#addCharacterButton').addEventListener('click', () => {
         document.querySelector('#speciesInput').value = '';
         document.querySelector('#costInput').value = '';
         render();
-        // Re-render the list after adding a new character
+        updateAveragePrice();
     }
 });
 //Let's render the list of characters
@@ -63,7 +64,6 @@ render();
 
 
 
-
 // Add additional freelancers to the list
 function addCharacter() {
     if (addNames.length === 0) return;
@@ -72,7 +72,7 @@ function addCharacter() {
     characters.push(character);
 }
 
-
+// Add a new freelancer every 2 seconds
 const addCharacterInterval = setInterval(() => {
     addCharacter();
     updateAveragePrice();
