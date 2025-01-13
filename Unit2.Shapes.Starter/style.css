@@ -1,0 +1,11 @@
+* {
+    border: red 4px;
+}
+
+.li ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    gap: 1ch;
+    border: solid 1px black;
+}

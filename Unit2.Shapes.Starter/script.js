@@ -9,29 +9,53 @@ const addNames = [
     { name: "Black Krrsantan", species: "Wookie", price: "100000" },
     { name: "Din Djarin", species: "Human", price: "250000" },
 ]
-//list of initial freelancers
-const names = [
+
+
+// === State ===
+const characters = [
     { name: "Boba Fett", species: "Human", price: "500000" },
     { name: "Bossk", species: "Trandoshan", price: "100000" },
     { name: "IG-88", species: "Droid", price: "150000" },
     { name: "Dengar", species: "Human", price: "85000" },
     { name: "4-LOM", species: "Droid", price: "75000" },
     { name: "Zuckuss", species: "Gand", price: "75000" },
-]
+];
 
-document.querySelector("addCharacterButton").addEventListener("click", () => {
-    const nameInput = document.querySelector("nameInput").value;
-    const speciesInput = document.querySelector("speciesInput").value;
-    const costInput = document.querySelector("costInput")
+document.querySelector('#addCharacterButton').addEventListener('click', () => {
+    const nameInput = document.querySelector('#nameInput').value;
+    const speciesInput = document.querySelector('#speciesInput').value;
+    const costInput = document.querySelector('#costInput').value;
     if (nameInput && speciesInput && costInput) {
-        names.push({ name: nameInput, species: speciesInput, cost: costInput });
-        document.querySelector("nameInput").value = "";
-        document.querySelector("speciesInput").value = "";
-        document.querySelector("costInput").value = "";
+        characters.push({ name: nameInput, species: speciesInput });
+        document.querySelector('#nameInput').value = '';
+        document.querySelector('#speciesInput').value = '';
+        document.querySelector('#costInput').value = '';
         render();
+        // Re-render the list after adding a new character
     }
-})
+});
 
+function render() {
+    const characterList = document.querySelector('#characterList');
+    characterList.innerHTML = '';
+    characters.forEach(character => {
+        const li = document.createElement('li');
+        li.textContent = `${character.name} (${character.species}) - ${"GC" + character.price}`;
+        characterList.appendChild(li);
+    });
+}
 
+// Add additional freelancers to the list
+function addCharacter() {
+    const randomIndex = Math.floor(Math.random() * addNames.length);
+    const character = addNames[randomIndex];
+    characters.push(character);
+};
+const addCharacterInterval = setInterval(() => {
+    addCharacter();
+    render();
 
+}, 2000);
+
+// Initial render
 render();
