@@ -1,4 +1,4 @@
-//List on additional freelancers
+// List of additional freelancers
 const addNames = [
     { name: "Aurra Sing", species: "Paaliduvan", price: "20000" },
     { name: "Cad Bane", species: "Duros", price: "70000" },
@@ -8,8 +8,7 @@ const addNames = [
     { name: "Greedo", species: "Rodian", price: "30000" },
     { name: "Black Krrsantan", species: "Wookie", price: "100000" },
     { name: "Din Djarin", species: "Human", price: "250000" },
-]
-
+];
 
 // === State ===
 const characters = [
@@ -21,12 +20,22 @@ const characters = [
     { name: "Zuckuss", species: "Gand", price: "75000" },
 ];
 
+function calculateAveragePrice() {
+    const total = characters.reduce((sum, character) => sum + parseInt(character.price), 0);
+    return total / characters.length;
+}
+
+function updateAveragePriceDisplay() {
+    const averagePrice = calculateAveragePrice();
+    document.querySelector('#averagePrice').textContent = `Average Price: GC${averagePrice.toFixed(2)}`;
+}
+
 document.querySelector('#addCharacterButton').addEventListener('click', () => {
     const nameInput = document.querySelector('#nameInput').value;
     const speciesInput = document.querySelector('#speciesInput').value;
     const costInput = document.querySelector('#costInput').value;
     if (nameInput && speciesInput && costInput) {
-        characters.push({ name: nameInput, species: speciesInput });
+        characters.push({ name: nameInput, species: speciesInput, price: costInput });
         document.querySelector('#nameInput').value = '';
         document.querySelector('#speciesInput').value = '';
         document.querySelector('#costInput').value = '';
@@ -47,14 +56,17 @@ function render() {
 
 // Add additional freelancers to the list
 function addCharacter() {
+    if (addNames.length === 0) return;
     const randomIndex = Math.floor(Math.random() * addNames.length);
-    const character = addNames[randomIndex];
+    const character = addNames.splice(randomIndex, 1)[0];
     characters.push(character);
-};
+}
 const addCharacterInterval = setInterval(() => {
     addCharacter();
     render();
-
+    if (characters.length >= 14) {
+        clearInterval(addCharacterInterval);
+    }
 }, 2000);
 
 // Initial render
