@@ -19,6 +19,11 @@ const names = [
     { name: "Zuckuss", species: "Gand", price: "75000" },
 ]
 
+document.querySelector("addCharacterButton").addEventListener("click", () => {
+    constant
+})
+
+function render()
 const freeLancelist = document.querySelector("fl-list")
 
 
